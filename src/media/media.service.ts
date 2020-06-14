@@ -14,7 +14,8 @@ export class MediasService {
     provider: string,
     mediaType: string,
     providerId: string,
-    expiresAt: Date,
+    expiresAt: number,
+    id?: string,
   ): Promise<MediaDTO> {
     const media = new this.model({
       name,
@@ -23,6 +24,7 @@ export class MediasService {
       mediaType,
       providerId,
       expiresAt,
+      id,
     });
 
     await media.save();
@@ -32,7 +34,7 @@ export class MediasService {
 
   async readAll(): Promise<MediaDTO[]> {
     const medias = await this.model.find().exec();
-    return medias.map(_media => this.parseMedia(_media));
+    return medias.map((_media) => this.parseMedia(_media));
   }
 
   async readById(id: string): Promise<MediaDTO> {
@@ -47,7 +49,7 @@ export class MediasService {
     provider: string,
     mediaType: string,
     providerId: string,
-    expiresAt: Date,
+    expiresAt: number,
   ): Promise<MediaDTO> {
     const media = await this.findMedia(id);
 

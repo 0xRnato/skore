@@ -1,75 +1,73 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo_text.svg" width="320" alt="Nest Logo" /></a>
-</p>
+<h1 align="center">Teste Backend</h1>
+<h5 align="center">Nosso teste para conhecer como você codifica no dia-dia</h5>
 
-[travis-image]: https://api.travis-ci.org/nestjs/nest.svg?branch=master
-[travis-url]: https://travis-ci.org/nestjs/nest
-[linux-image]: https://img.shields.io/travis/nestjs/nest/master.svg?label=linux
-[linux-url]: https://travis-ci.org/nestjs/nest
-  
-  <p align="center">A progressive <a href="http://nodejs.org" target="blank">Node.js</a> framework for building efficient and scalable server-side applications, heavily inspired by <a href="https://angular.io" target="blank">Angular</a>.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore"><img src="https://img.shields.io/npm/dm/@nestjs/core.svg" alt="NPM Downloads" /></a>
-<a href="https://travis-ci.org/nestjs/nest"><img src="https://api.travis-ci.org/nestjs/nest.svg?branch=master" alt="Travis" /></a>
-<a href="https://travis-ci.org/nestjs/nest"><img src="https://img.shields.io/travis/nestjs/nest/master.svg?label=linux" alt="Linux" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#5" alt="Coverage" /></a>
-<a href="https://gitter.im/nestjs/nestjs?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=body_badge"><img src="https://badges.gitter.im/nestjs/nestjs.svg" alt="Gitter" /></a>
-<a href="https://opencollective.com/nest#backer"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec"><img src="https://img.shields.io/badge/Donate-PayPal-dc3d53.svg"/></a>
-  <a href="https://twitter.com/nestframework"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+### Tecnologias na Skore
 
-## Description
+Nossa stack para microserviços é a seguinte:
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+- Typescript
+- Nest.js
+- Jest
 
-## Installation
+### Observações
 
-```bash
-$ npm install
+Esta é uma avaliação básica de código.
+
+O objetivo é conhecer um pouco do seu conhecimento/práticas código.
+
+Recomendamos que você não gaste mais do que 4 - 6 horas.
+
+Faça um fork deste repositório.
+
+Ao finalizar o teste, submeta um pull request para o repositório que nosso time será notificado.
+
+### Tarefas
+
+Com a seguinte representação de um conteúdo:
+
+```json
+{
+  "id": 1,
+  "name": "GOTO 2017 • The Many Meanings of Event-Driven Architecture • Martin Fowler",
+  "duration": 3006,
+  "provider": "youtube",
+  "media_type": "video",
+  "provider_id": "STKCRSUsyP0",
+  "expires_at": 1580428851394,
+  "watched": false,
+  "expired": false
+}
 ```
 
-## Running the app
+Crie endpoints para as seguintes ações:
 
-```bash
-# development
-$ npm run start
+- [ ] Criação de conteúdo onde o payload será o json informado acima (exceto as propriedades **watched** e **expired**)
 
-# watch mode
-$ npm run start:dev
+- [ ] Edição de conteúdo por **id**
 
-# production mode
-$ npm run start:prod
-```
+- [ ] Recuperação de conteúdo por **id**
 
-## Test
+- [ ] Deleção de conteúdo por **id**
 
-```bash
-# unit tests
-$ npm run test
+### Requisitos
 
-# e2e tests
-$ npm run test:e2e
+- [ ] Toda vez que um conteúdo for recuperado por **id** deverá ser calculado a propriedade: **expired**
 
-# test coverage
-$ npm run test:cov
-```
+      A propriedade expired é verdadeira quando expires_at for menor que a data atual (ambos timestamp)
 
-## Support
+- [ ] Toda vez que um conteúdo for recuperado por **id** deverá ser informada a propriedade: **watched**
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+      A propriedade watched é verdadeira quando o conteúdo já tiver sido obtido alguma vez
 
-## Stay in touch
+- [ ] Caso um conteúdo já existente em memória tente ser criado com o mesmo **id** uma exceção deverá ser lançada
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+- [ ] Ao editar um conteúdo, o antigo deve ser sobrescrito com o que esta sendo enviado na requisição
 
-## License
+      A propriedade watched deve ser false
 
-  Nest is [MIT licensed](LICENSE).
+### Dicas
+
+- Os conteúdos podem ficar em memória, não é necessário persistir os dados
+- Utilize Nestjs com TypeScript
+- Caso tenha alguma dúvida, tome uma decisão e explique no PR
+- Testes são sempre bem-vindos :smiley:

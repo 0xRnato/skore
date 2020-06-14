@@ -1,7 +1,7 @@
 import { Controller, Post, Body, Get, Param, Patch, Delete } from '@nestjs/common';
 
 import { MediaDTO } from './media.model';
-import { MediasService } from './medias.service';
+import { MediasService } from './media.service';
 
 @Controller('medias')
 export class MediasController {
@@ -14,9 +14,18 @@ export class MediasController {
     @Body('provider') provider: string,
     @Body('media_type') mediaType: string,
     @Body('provider_id') providerId: string,
-    @Body('expires_at') expiresAt: Date,
+    @Body('expires_at') expiresAt: number,
+    @Body('id') id?: string,
   ): Promise<MediaDTO> {
-    const result = await this.service.create(name, duration, provider, mediaType, providerId, expiresAt);
+    const result = await this.service.create(
+      name,
+      duration,
+      provider,
+      mediaType,
+      providerId,
+      expiresAt,
+      id,
+    );
     return result;
   }
 
@@ -40,9 +49,17 @@ export class MediasController {
     @Body('provider') provider: string,
     @Body('media_type') mediaType: string,
     @Body('provider_id') providerId: string,
-    @Body('expires_at') expiresAt: Date,
+    @Body('expires_at') expiresAt: number,
   ): Promise<MediaDTO> {
-    const result = await this.service.update(id, name, duration, provider, mediaType, providerId, expiresAt);
+    const result = await this.service.update(
+      id,
+      name,
+      duration,
+      provider,
+      mediaType,
+      providerId,
+      expiresAt,
+    );
     return result;
   }
 

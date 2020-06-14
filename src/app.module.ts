@@ -3,10 +3,11 @@ import { MongooseModule } from '@nestjs/mongoose';
 
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { MediasModule } from './medias/medias.module';
+
+import { MediaModule } from './media/media.module';
 
 @Module({
-  imports: [MongooseModule.forRoot(process.env.DB_CONNECTION), MediasModule],
+  imports: [MongooseModule.forRoot(process.env.DB_CONNECTION), MediaModule],
   controllers: [AppController],
   providers: [AppService],
 })
