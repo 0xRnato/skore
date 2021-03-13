@@ -7,8 +7,8 @@ export const MediaSchema = new Schema({
   mediaType: { type: String, required: true },
   providerId: { type: String, required: true },
   expiresAt: { type: Number, required: true },
-  watched: { type: Boolean, default: false },
-  expired: { type: Boolean, default: false },
+  watched: { type: Boolean, required: true, default: false },
+  expired: { type: Boolean, required: true },
 });
 
 export interface IMedia {
@@ -19,6 +19,18 @@ export interface IMedia {
   mediaType: string;
   providerId: string;
   expiresAt: number;
+  watched?: boolean;
+  expired?: boolean;
+}
+
+export interface IMediaRequest {
+  id?: string;
+  name?: string;
+  duration?: number;
+  provider?: string;
+  media_type?: string;
+  provider_id?: string;
+  expires_at?: number;
   watched?: boolean;
   expired?: boolean;
 }

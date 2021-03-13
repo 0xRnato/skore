@@ -1,70 +1,41 @@
 import { Controller, Post, Body, Get, Param, Patch, Delete } from '@nestjs/common';
 
-import { MediaDTO } from './media.model';
-import { MediasService } from './media.service';
+import { IMediaRequest } from './media.model';
+import { MediaService } from './media.service';
 
-@Controller('medias')
-export class MediasController {
-  constructor(private readonly service: MediasService) {}
+@Controller('api/v1/media')
+export class MediaController {
+  constructor(private readonly service: MediaService) {}
 
   @Post()
-  async create(
-    @Body('name') name: string,
-    @Body('duration') duration: number,
-    @Body('provider') provider: string,
-    @Body('media_type') mediaType: string,
-    @Body('provider_id') providerId: string,
-    @Body('expires_at') expiresAt: number,
-    @Body('id') id?: string,
-  ): Promise<MediaDTO> {
-    const result = await this.service.create(
-      name,
-      duration,
-      provider,
-      mediaType,
-      providerId,
-      expiresAt,
-      id,
-    );
+  public async create(@Body() media: IMediaRequest): Promise<IMediaRequest> {
+    const result = await this.service.create(media);
     return result;
   }
 
   @Get()
-  async readAll(): Promise<MediaDTO[]> {
+  public async readAll(): Promise<IMediaRequest[]> {
     const result = await this.service.readAll();
     return result;
   }
 
   @Get(':id')
-  readById(@Param('id') id: string): Promise<MediaDTO> {
-    const result = this.service.readById(id);
+  public async readById(@Param('id') id: string): Promise<IMediaRequest> {
+    const result = await this.service.readById(id);
     return result;
   }
 
   @Patch(':id')
-  async update(
+  public async update(
     @Param('id') id: string,
-    @Body('name') name: string,
-    @Body('duration') duration: number,
-    @Body('provider') provider: string,
-    @Body('media_type') mediaType: string,
-    @Body('provider_id') providerId: string,
-    @Body('expires_at') expiresAt: number,
-  ): Promise<MediaDTO> {
-    const result = await this.service.update(
-      id,
-      name,
-      duration,
-      provider,
-      mediaType,
-      providerId,
-      expiresAt,
-    );
+    @Body() media: IMediaRequest,
+  ): Promise<IMediaRequest> {
+    const result = await this.service.update({ id, ...media });
     return result;
   }
 
   @Delete(':id')
-  async delete(@Param('id') id: string): Promise<void> {
+  public async delete(@Param('id') id: string): Promise<void> {
     await this.service.delete(id);
   }
 }
